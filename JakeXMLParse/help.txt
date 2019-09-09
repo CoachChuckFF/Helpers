@@ -1,0 +1,17 @@
+Hi Jake!
+
+1. Open terminal
+2. Put all xml files you want converted into the xml folder
+3. Copy, paste and execute each of the following
+into the terminal one at a time,
+press enter to execute each command
+(change: path/to/JakeXMLParse to your path)
+------------------------------------------
+cd path/to/JakeXMLParse
+chmod +x ./run.sh
+./run.sh
+4. profit
+
+*resulting files will show up in csv folder
+there is also a global.csv that combines all 
+files into one

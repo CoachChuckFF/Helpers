@@ -1,0 +1,18 @@
+Hi Jake!
+
+First you will need to install dart:
+
+1. Open a terminal then copy and paste line by line - pressing 'enter' and letting each one run before pasting the next
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+brew tap dart-lang/dart
+brew install dart
+brew update
+brew tap dart-lang/dart
+brew install dartium
+brew update
+brew upgrade dartium
+
+2. Put all of your xml files into the folder 'put_pre-parsed_xml_here'
+
+3. On the terminal 
+
