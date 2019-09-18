@@ -1,9 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:simple_animations/simple_animations.dart';
-import 'dart:math';
+// Confetti.dart is a flutter animation
+// it is largely a modified version of Felix Blaschke's flutter particle effects
+// https://medium.com/@felixblaschke/particle-animations-with-flutter-756a23dba027
 
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
+import 'dart:math';
 
 
 class Confetti extends StatefulWidget {

@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:confetti/confetti.dart';
 
-void main() => runApp(ConfettiRunner());
+void main(){
+  print("I dedicate this program to all of my fellow Confetti Lovers!");
+
+  runApp(ConfettiRunner());
+}
 
 class ConfettiRunner extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Confetti Runner',
+      title: 'It\'s Just Confetti!',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.purple,
       ),
-      home: Confetti(1000)
+      home: Confetti(1597, 8.0)
     );
   }
 }
