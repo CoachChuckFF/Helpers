@@ -1,4 +1,4 @@
-package com.example.confetti;
+package com.soctheory.confetti;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;
