@@ -19,7 +19,7 @@ void main(List<String> arguments) async {
 
   _server = ArtnetServer(connectionCallback, pollCallback, packetCallback);
 
-  _firmware = Uint16List.view(Uint8List.fromList(await File("./build/Blizzard_Bridge.bin").readAsBytes()).buffer);
+  _firmware = Uint16List.view(Uint8List.fromList(await File("./build/SoC_It.bin").readAsBytes()).buffer);
   print("Firmware loaded in - Length ${_firmware.length}");
   _firmwareLoaded = true;
 
@@ -41,7 +41,7 @@ void packetCallback(Datagram gram){
       print("got poll from ${gram.address} $_validDeviceCount");
       if(++_validDeviceCount >= 3){
         _upgradeStarted = true;
-        _deviceToUpgrade = InternetAddress("192.168.1.61");
+        _deviceToUpgrade = InternetAddress("192.168.1.134");
         startOTA();
       }
       /*if(gram.address == _deviceToUpgrade){

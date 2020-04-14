@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ufwb version="1.17">
+    <grammar name="Artnet" start="id:3" author="Christian" email="christian@blizzardpro.com" uti="public.data">
+        <description>Artnet Packets</description>
+        <structure name="Header" id="3" length="8" encoding="ISO_8859-1:1987" endian="big" signed="no" valueexpression="41 72 74 2D 4E 65 74 00"/>
+    </grammar>
+</ufwb>

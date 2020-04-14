@@ -18,6 +18,11 @@
 #include "nvs_flash.h"
 #include "tcpip_adapter.h"
 #include "protocol_examples_common.h"
+#include "lwip/opt.h"
+#include "lwip/dhcp.h"
+#include "lwip/netif.h"
+#include "lwip/tcpip.h"
+#include "lwip/sockets.h"
 
 #include "lwip/err.h"
 #include "lwip/sockets.h"
@@ -49,6 +54,27 @@ static const char *V4TAG = "mcast-ipv4";
 static const char *V6TAG = "mcast-ipv6";
 #endif
 
+static int altSetup(){
+    int sock = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP); //IPPROTO_UDP
+
+    //Bind
+    struct sockaddr_in serv_addr;
+    serv_addr.sin_family = AF_INET;
+    serv_addr.sin_addr.s_addr = INADDR_ANY;
+    serv_addr.sin_port = htons(UDP_PORT);
+    if (bind(sock, (struct sockaddr *) &serv_addr, (socklen_t)sizeof(serv_addr)) < 0)
+        ESP_LOGE(TAG, "could not bind");
+
+    struct ip_mreq mreq;
+    mreq.imr_multiaddr.s_addr = inet_addr(MULTICAST_IPV4_ADDR);
+    mreq.imr_interface.s_addr = INADDR_ANY;
+    if (setsockopt(sock, IPPROTO_IP, IP_ADD_MEMBERSHIP, (char *)&mreq, sizeof(mreq)) < 0)
+        ESP_LOGE(TAG, "could not add membership");
+
+    ESP_LOGE(TAG, "alt setup done");
+
+    return sock;
+}
 
 #ifdef CONFIG_EXAMPLE_IPV4
 /* Add a socket, either IPV4-only or IPV6 dual mode, to the IPV4
@@ -304,7 +330,8 @@ static void mcast_example_task(void *pvParameters)
         int sock;
 
 #ifdef CONFIG_EXAMPLE_IPV4_ONLY
-        sock = create_multicast_ipv4_socket();
+        //sock = create_multicast_ipv4_socket();
+        sock = altSetup();
         if (sock < 0) {
             ESP_LOGE(TAG, "Failed to create IPv4 multicast socket");
         }
